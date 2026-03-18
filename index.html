@@ -327,7 +327,7 @@ nav a:hover::after { width: 100%; }
 /* ─── MEET MARC SECTION ─── */
 .about-section {
     background: linear-gradient(135deg, var(--secondary) 0%, #111111 50%, #1a1200 100%);
-    color: var(--light); display: flex; justify-content: space-between;
+    color: var(--light); display: flex; justify-content: center;
     align-items: center; padding: 7rem 5rem; position: relative; overflow: hidden; gap: 4rem;
 }
 /* decorative grid overlay */
@@ -343,7 +343,7 @@ nav a:hover::after { width: 100%; }
     background: radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 70%);
     pointer-events: none;
 }
-.about-text { max-width: 52%; position: relative; z-index: 2; }
+.about-text { max-width: 60%; position: relative; z-index: 2; }
 .about-text .section-heading { color: var(--primary); }
 .about-text .section-heading::after { left: 0; transform: none; }
 .about-text .divider {
@@ -370,6 +370,27 @@ nav a:hover::after { width: 100%; }
     border: 4px solid var(--primary);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 8px rgba(255,215,0,0.08);
     transition: all 0.5s ease;
+}
+.about-video-wrap {
+    position: relative; z-index: 2; flex-shrink: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 4px solid var(--primary);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 8px rgba(255,215,0,0.08);
+}
+.about-video-wrap .video-rotate-wrap {
+    position: relative;
+    width: 280px;
+    padding-top: 497px; /* 280 * 16/9 ≈ 497 for portrait */
+    overflow: hidden;
+    background: #000;
+}
+.about-video-wrap .video-rotate-wrap video {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 180%;
+    height: 180%;
+    transform: translate(-46%, -50%) rotate(270deg);
 }
 .about-image-wrap:hover img {
     box-shadow: 0 25px 70px rgba(0,0,0,0.6), 0 0 0 12px rgba(255,215,0,0.12);
@@ -661,6 +682,87 @@ nav a:hover::after { width: 100%; }
 }
 .pulse { animation: pulse 2.2s infinite; }
 
+/* ─── LOCATION SECTION ─── */
+.location-section {
+    background: linear-gradient(135deg, var(--secondary) 0%, #111111 50%, #1a1200 100%);
+    color: var(--light); padding: 7rem 5rem; position: relative; overflow: hidden;
+}
+.location-section::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+}
+.location-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+.location-header { text-align: center; margin-bottom: 3.5rem; display: flex; flex-direction: column; align-items: center; }
+.location-header .section-heading { color: var(--primary); }
+.location-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--secondary); font-weight: 800; font-size: 1.05rem;
+    padding: 0.7rem 1.6rem; border-radius: 50px;
+    box-shadow: 0 6px 24px rgba(255,215,0,0.35);
+    margin-bottom: 1.4rem;
+}
+.location-media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    align-items: start;
+}
+.location-media-grid .media-item {
+    border-radius: var(--radius); overflow: hidden;
+    border: 2px solid rgba(255,215,0,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.location-media-grid .media-item img {
+    width: 100%; height: 260px; object-fit: cover; object-position: center; display: block;
+    transition: transform 0.5s ease;
+}
+.location-media-grid .media-item:hover img { transform: scale(1.03); }
+.location-media-grid .media-item--video {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.video-rotate-wrap {
+    position: relative;
+    width: 35%;
+    /* portrait 9:16 ratio */
+    padding-top: 62.22%; /* 35% * (16/9) */
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 2px solid rgba(255,215,0,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    background: #000;
+}
+.video-rotate-wrap video {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 180%;
+    height: 180%;
+    transform: translate(-50%, -50%) rotate(270deg);
+    transform-origin: center center;
+}
+.location-bottom-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.2rem;
+}
+.location-bottom-row .media-item {
+    border-radius: var(--radius); overflow: hidden;
+    border: 2px solid rgba(255,215,0,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.location-bottom-row .media-item img {
+    width: 100%; height: 220px; object-fit: cover; object-position: center; display: block;
+    transition: transform 0.5s ease;
+}
+.location-bottom-row .media-item:hover img { transform: scale(1.03); }
+
 /* ─── RESPONSIVE ─── */
 @media screen and (max-width: 1200px) {
     .hero h1 { font-size: 3.4rem; }
@@ -712,6 +814,9 @@ nav a:hover::after { width: 100%; }
     .faq-section { padding: 6rem 1.5rem; }
     .process-section { padding: 6rem 1.5rem; }
     .final-cta { padding: 6rem 1.5rem; }
+    .location-section { padding: 5rem 1.5rem; }
+    .location-media-grid { grid-template-columns: 1fr; }
+    .location-bottom-row { grid-template-columns: 1fr; }
 }
 @media screen and (max-width: 576px) {
     header { padding: 0.8rem 1rem; }
@@ -865,8 +970,48 @@ nav a:hover::after { width: 100%; }
         <p>Born and raised in Las Vegas, Marc Gabriel brings decades of experience and local knowledge to every case. Having worked closely within the Las Vegas judicial system for many years, Marc understands how stressful a first arrest can be for both individuals and their families.</p>
         <p>Marc and his team are committed to treating every client with professionalism, respect, and discretion. Whether someone is facing their first legal situation or helping a loved one through the process, Marc works quickly to ensure the fastest possible release while guiding clients every step of the way.</p>
     </div>
-    <div class="about-image-wrap" data-aos="fade-left" data-aos-delay="100">
-        <img src="marc.webp" alt="Marc Gabriel — eBail Bail Bonds Las Vegas" />
+    <div class="about-video-wrap" data-aos="fade-left" data-aos-delay="100">
+        <div class="video-rotate-wrap">
+            <video controls playsinline>
+                <source src="ImportedSegment.795546722.185816.mov" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ═══════════════════ OUR LOCATION ═══════════════════ -->
+<section class="location-section">
+    <div class="location-inner">
+        <div class="location-header" data-aos="fade-up">
+            <div class="location-badge">
+                <i class="fas fa-map-marker-alt"></i> Over 20 Years at the Same Location
+            </div>
+            <h2 class="section-heading section-heading--light">Our Office in Las Vegas</h2>
+            <p style="color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto;">We've been proudly serving the Las Vegas community from the same location for over two decades. When you need help, you know exactly where to find us.</p>
+        </div>
+
+        <div class="location-media-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="media-item">
+                <img src="Image (1).jpeg" alt="eBail Bail Bonds Las Vegas office exterior" />
+            </div>
+            <div class="media-item">
+                <img src="Image (2).jpeg" alt="eBail Bail Bonds Las Vegas office" />
+            </div>
+        </div>
+
+        <div class="location-bottom-row" data-aos="fade-up" data-aos-delay="200">
+            <div class="media-item">
+                <img src="Image (3).jpeg" alt="eBail Bail Bonds Las Vegas building" />
+            </div>
+            <div class="media-item">
+                <img src="Image (4).jpeg" alt="eBail Bail Bonds Las Vegas location" />
+            </div>
+            <div class="media-item">
+                <img src="Image (5).jpeg" alt="eBail Bail Bonds Las Vegas" />
+            </div>
+        </div>
     </div>
 </section>
 
